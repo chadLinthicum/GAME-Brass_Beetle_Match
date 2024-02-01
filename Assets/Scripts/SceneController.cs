@@ -4,10 +4,13 @@ using UnityEngine;
 
 public class SceneController : MonoBehaviour
 {
-    // Start is called before the first frame update
+    [SerializeField] private MemoryCard originalCard;
+    [SerializeField] private Sprite[] images;
+
     void Start()
     {
-        
+        int id = Random.Range(0, images.Length);
+        originalCard.SetCard(id, images[id]);
     }
 
     // Update is called once per frame
@@ -15,4 +18,6 @@ public class SceneController : MonoBehaviour
     {
         
     }
+
+    
 }
