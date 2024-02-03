@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class Click : MonoBehaviour
 {
-    [SerializeField] private ParticleSystem pfx_click;
+
+    [SerializeField] private GameObject pfx_click;
     // Start is called before the first frame update
     void Start()
     {
@@ -26,12 +27,16 @@ public class Click : MonoBehaviour
     {
         Vector3 mousePos = Input.mousePosition;
         Vector3 clickPos = Camera.main.ScreenToWorldPoint(mousePos);
-        ParticleSystem effect = Instantiate(pfx_click);
-        Vector3 newPos = new Vector3(clickPos.x, clickPos.y, 0);
-        effect.transform.position = newPos;
+        
+        GameObject effect = ObjectPool.SharedInstance.GetPooledObject();
+        if(effect != null)
+        {
+            Vector3 newPos = new Vector3(clickPos.x, clickPos.y, 0);
+            effect.transform.position = newPos;
+            effect.SetActive(true);
+        }
 
         yield return new WaitForSeconds(1.5f);
-
-        Destroy(effect.gameObject);
+        effect.SetActive(false);
     }
 }
