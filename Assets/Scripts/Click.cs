@@ -19,10 +19,19 @@ public class Click : MonoBehaviour
 
     public void OnMouseDown()
     {
+        StartCoroutine(ParticleSpawner());
+    }
+
+    private IEnumerator ParticleSpawner()
+    {
         Vector3 mousePos = Input.mousePosition;
         Vector3 clickPos = Camera.main.ScreenToWorldPoint(mousePos);
         ParticleSystem effect = Instantiate(pfx_click);
         Vector3 newPos = new Vector3(clickPos.x, clickPos.y, 0);
         effect.transform.position = newPos;
+
+        yield return new WaitForSeconds(1.5f);
+
+        Destroy(effect.gameObject);
     }
 }
