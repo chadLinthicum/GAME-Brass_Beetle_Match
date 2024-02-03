@@ -7,8 +7,6 @@ public class MemoryCard : MonoBehaviour
     [SerializeField] private GameObject cardBack;
     //[SerializeField] private Sprite image;
     [SerializeField] private SceneController controller;
-
-    [SerializeField] private ParticleSystem match;
     
     private int _id;
     public int id { 
@@ -21,7 +19,6 @@ public class MemoryCard : MonoBehaviour
         GetComponent<SpriteRenderer>().sprite = image;
     }
 
-    
     void Start()
     {
         
@@ -35,11 +32,14 @@ public class MemoryCard : MonoBehaviour
 
     public void OnMouseDown()
     {
-        if (cardBack.activeSelf)
+        if(cardBack.activeSelf && controller.canReveal)
         {
-            Instantiate(match);
             cardBack.SetActive(false);
-            
+            controller.CardRevealed(this);
         }
+    }
+    public void Unreveal()
+    {
+        cardBack.SetActive(true);
     }
 }

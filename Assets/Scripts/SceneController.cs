@@ -12,6 +12,15 @@ public class SceneController : MonoBehaviour
     [SerializeField] private MemoryCard originalCard;
     [SerializeField] private Sprite[] images;
 
+    private MemoryCard _firstRevealed;
+    private MemoryCard _secondRevealed;
+
+    public bool canReveal
+    {
+        //returns false if there's already a second card revealed
+        get { return _secondRevealed == null; }
+    }
+
     void Start()
     {
         Vector3 startPos = originalCard.transform.position;
@@ -20,18 +29,18 @@ public class SceneController : MonoBehaviour
         numbers = ShuffleArray(numbers);
         for (int i = 0; i < gridCols; i++)
         {
-            for(int j = 0; j < gridRows; j++)
+            for (int j = 0; j < gridRows; j++)
             {
                 MemoryCard card;
                 if (i == 0 && j == 0)
                 {
                     card = originalCard;
-                }else
+                } else
                 {
                     card = Instantiate(originalCard) as MemoryCard;
                 }
 
-                int index = j * gridCols + i;
+                int index = i + gridCols * j;
                 int id = numbers[index];
                 originalCard.SetCard(id, images[id]);
 
@@ -39,13 +48,13 @@ public class SceneController : MonoBehaviour
                 float posY = -(offsetY * j) + startPos.y;
                 card.transform.position = new Vector3(posX, posY, startPos.z);
             }
-        }       
+        }
     }
 
-    private int[] ShuffleArray (int[] numbers)
+    private int[] ShuffleArray(int[] numbers)
     {
         int[] newArray = numbers.Clone() as int[];
-        for (int i = 0; i <newArray.Length; i++)
+        for (int i = 0; i < newArray.Length; i++)
         {
             int tmp = newArray[i];
             int r = Random.Range(i, newArray.Length);
@@ -53,6 +62,11 @@ public class SceneController : MonoBehaviour
             newArray[r] = tmp;
         }
         return newArray;
+    }
+
+    public void CardRevealed(MemoryCard card)
+    {
+        Debug.Log(card);
     }
     
 }
