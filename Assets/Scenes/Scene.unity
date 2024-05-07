@@ -350,8 +350,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b92cdcaca7c31ad43a26fac91a0daca7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetObject: {fileID: 471962832}
-  targetMessage: 
+  targetObject: {fileID: 1204422339}
+  targetMessage: Restart
   defaultColor: {r: 1, g: 1, b: 1, a: 1}
   highlightColor: {r: 0.81886786, g: 0.7202731, b: 0.2889213, a: 0.3764706}
 --- !u!1 &489103848

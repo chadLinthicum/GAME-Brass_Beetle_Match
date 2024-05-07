@@ -96,4 +96,9 @@ public class SceneController : MonoBehaviour {
 		firstRevealed = null;
 		secondRevealed = null;
 	}
+
+	public void Restart()
+	{
+        SceneManager.LoadScene("Scene");
+	}
 }
