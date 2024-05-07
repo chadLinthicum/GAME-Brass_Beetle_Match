@@ -220,7 +220,7 @@ GameObject:
   - component: {fileID: 471962835}
   - component: {fileID: 471962836}
   m_Layer: 0
-  m_Name: btn_Reset
+  m_Name: btn_Restart
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
