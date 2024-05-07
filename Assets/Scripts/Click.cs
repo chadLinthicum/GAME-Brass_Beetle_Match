@@ -6,13 +6,12 @@ public class Click : MonoBehaviour
 {
 
     [SerializeField] private GameObject pfx_click;
-    // Start is called before the first frame update
+
     void Start()
     {
         
     }
 
-    // Update is called once per frame
     void Update()
     {
         
